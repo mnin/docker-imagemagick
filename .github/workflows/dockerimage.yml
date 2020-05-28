@@ -1,0 +1,19 @@
+name: ImageMagick Docker Image
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build the Docker image
+      run: docker build . --tag docker.pkg.github.com/mnin/docker-imagemagick/imagemagick:latest
+    - name: Login to GitHub Docker Registry
+      run: docker login docker.pkg.github.com --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push the Image to the GitHub Docker Registry
+      run: docker push docker.pkg.github.com/mnin/docker-imagemagick/imagemagick:latest
