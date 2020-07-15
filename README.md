@@ -1,2 +1,3 @@
 # docker-imagemagick
+
 Alpine + ImageMagick
