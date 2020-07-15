@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-c1
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
